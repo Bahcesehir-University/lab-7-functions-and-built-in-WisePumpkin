@@ -18,7 +18,7 @@
 #include <cstdlib>  // rand, srand
 #include <ctime>    // time  (used to seed the random generator)
 using namespace std;
-
+// BUĞRA PARMAKSIZ 2201199
 bool isPrime(int n)
     {
         if(n <= 1) return false;
