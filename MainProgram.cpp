@@ -19,11 +19,38 @@
 #include <ctime>    // time  (used to seed the random generator)
 using namespace std;
 
+bool isPrime(int n)
+    {
+        if(n <= 1) return false;
+        for(int i = 2 ; i <= sqrt(double(n)) ;i++)
+        {
+            if(n%i == 0) return false;
+        }
+        return true;
+    }
+    int maxOfThree(int a, int b, int c){
+        int maxValue = a;
+        if(b > maxValue) maxValue = b;
+        if(c > maxValue) maxValue = c;
+        return maxValue;
+    }
+double celsiusToFahrenheit(double c)
+{
+    return (c * 9.0 / 5.0) + 32;
+}
 // ============================================================
 //  SECTION 1 – WARM-UP  (~ 5 min)
 //  Goal: quickly recall variables, cin, cout, and arithmetic.
 // ============================================================
-
+double average(double arr[], int size)
+{
+    double sum = 0.0;
+    for(int i = 0 ; i < size ; i++)
+    {
+        sum += arr[i];
+    }
+    return sum / size;
+}
 int main()
 {
     // ----------------------------------------------------------
@@ -35,16 +62,12 @@ int main()
 
     double radius;
     const double PI = 3.14159;
+    cout << "Enter The Radius : ";
+    cin >> radius;
+    double area = radius*radius*PI;
+    
 
-    cout << "=== Warm-up: Circle Area ===" << endl;
-
-    // TODO: Ask the user to enter the radius
-    // TODO: Read the radius into the variable 'radius'
-    // TODO: Compute the area and print it
-
-
-
-
+    cout << "Area= " << area << endl;
     // ============================================================
     //  SECTION 2 – CORE CONCEPTS  (~ 8 min)
     //
@@ -94,12 +117,14 @@ int main()
     double val = 17.5;
 
     cout << "\n=== Built-in Functions ===" << endl;
-
+    cout << "sqrt of val :" << sqrt(val) << endl;
     // TODO: Print sqrt of val
     // TODO: Print ceil of val
+    cout << "ceil of val :" << ceil(val) << endl;
     // TODO: Print floor of val
+    cout << "floor of val :" << floor(val) << endl;
     // TODO: Print round of val
-
+    cout << "round of val :" << round(val) << endl;
 
 
 
@@ -122,7 +147,9 @@ int main()
 
     double celsius;
     cout << "\n=== Temperature Converter ===" << endl;
-
+    cout << "Enter temperature in Celsius: " << endl;
+    cin >> celsius;
+    cout << celsius << " C is "<< celsiusToFahrenheit(celsius) << " in F : " << endl;
     // TODO: Ask the user for a Celsius value and read it
     // TODO: Call celsiusToFahrenheit and print the result
 
@@ -143,7 +170,16 @@ int main()
 
     int number;
     cout << "\n=== Prime Checker ===" << endl;
-
+    cin >> number;
+    
+    if(isPrime(number))
+    {
+        cout << "X is prime";
+    }
+    else
+    {
+        cout << "X is not prime";
+    }
     // TODO: Ask the user for an integer and read it
     // TODO: Call isPrime and print "X is prime" or "X is not prime"
 
@@ -159,14 +195,14 @@ int main()
     //
     // Ask the user for three integers and print the maximum.
     // ----------------------------------------------------------
-
+    
     int x, y, z;
     cout << "\n=== Max of Three ===" << endl;
-
+    cout << "Enter three numbers :" << endl;
+    cin >> x >> y >> z;
     // TODO: Ask the user for three integers and read them
     // TODO: Call maxOfThree and print the result
-
-
+    cout << "Maximum : " << maxOfThree(x,y,z);
 
 
     // ============================================================
@@ -195,6 +231,17 @@ int main()
     double grades[SIZE];
 
     cout << "\n=== Challenge: Statistics ===" << endl;
+    cout << "Enter " << SIZE << " numbers : " << endl;
+    for(int i = 0; i < SIZE ; i++)
+    {
+        cout << " [ " << i + 1 << " ] : ";
+        cin >> grades[i];
+    }
+
+    double avg = average(grades,SIZE);
+    cout << "Average                = " << avg << endl; 
+    cout <<"sqrt(average)           =" << sqrt(avg) << endl;
+    cout <<"Rounded (2 decimals)    =" << round(avg * 100.0) / 100.0 << endl;
 
     // TODO: Read 5 values from the user into the array
     // TODO: Call average() and store the result
